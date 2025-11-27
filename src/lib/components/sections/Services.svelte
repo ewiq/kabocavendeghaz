@@ -19,16 +19,12 @@
 				szinten egy hálószoba található, illetve egy nagy nyitott tér gyermekjátékokkal. Mindkét
 				szinten van fürdőszoba, lent külön WC-vel.
 			</p>
-			<div class="flex gap-2">
-				<img
-					src={base + '/photos/01.jpg'}
-					alt="A ház"
-					class="rounded sm:w-1/2 w-full object-cover"
-				/>
+			<div class="grid grid-cols-2 gap-2">
+				<img src={base + '/photos/01.jpg'} alt="A ház" class="rounded w-full object-cover" />
 				<img
 					src={base + '/photos/thumb/1751633250664_thumb.jpg'}
 					alt="A borospince"
-					class="rounded sm:w-1/2 w-full object-cover"
+					class="rounded w-full object-cover"
 				/>
 			</div>
 		</div>

@@ -13,7 +13,6 @@
 
 	function updateLimit() {
 		limit = window.innerWidth < 640 ? 8 : 9; // sm breakpoint (640px)
-		console.log(limit);
 	}
 
 	$effect(() => {
