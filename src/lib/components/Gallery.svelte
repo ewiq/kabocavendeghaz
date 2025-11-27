@@ -1,62 +1,66 @@
 <script lang="ts">
 	import BiggerPicture from 'bigger-picture';
 	import 'bigger-picture/css';
+	import { base } from '$app/paths';
 
-	// Props to make the component reusable
+	interface Photo {
+		src: string;
+		thumbSrc: string;
+		alt: string;
+		height: number;
+		width: number;
+	}
+
 	interface Props {
-		photos: Array<{ src: string; alt: string }>;
+		photos: Array<Photo>;
 		showMoreButton?: boolean;
 		limit?: number;
 	}
 
 	let { photos, showMoreButton = false, limit }: Props = $props();
 
-	// Apply limit if specified
 	const displayPhotos = limit ? photos.slice(0, limit) : photos;
 
 	let galleryContainer: HTMLDivElement;
+	let bp: BiggerPicture | undefined;
 
-	function setNaturalSize(img: HTMLImageElement) {
-		const link = img.closest('a');
-		if (!link) return;
-		link.dataset.width = img.naturalWidth.toString();
-		link.dataset.height = img.naturalHeight.toString();
+	function openGallery(e: MouseEvent) {
+		e.preventDefault();
+		const target = e.currentTarget as HTMLAnchorElement;
+		if (!bp) return;
+
+		const photo = displayPhotos.find((p) => base + p.src === target.getAttribute('href'));
+		if (!photo) return;
+
+		bp.open({
+			items: displayPhotos.map((p) => ({
+				img: base + p.src,
+				thumb: base + p.thumbSrc,
+				alt: p.alt,
+				maxZoom: 1,
+				width: p.width,
+				height: p.height,
+				element: galleryContainer.querySelector(`a[href="${base + p.src}"]`)
+			})),
+			el: target
+		});
 	}
 
 	$effect(() => {
-		let bp = BiggerPicture({ target: document.body });
-		let links = galleryContainer.querySelectorAll('a');
-
-		function openGallery(e) {
-			e.preventDefault();
-			bp.open({
-				items: links,
-				el: e.currentTarget,
-				maxZoom: 1
-			});
-		}
-
-		links.forEach((link) => link.addEventListener('click', openGallery));
-
-		return () => links.forEach((link) => link.removeEventListener('click', openGallery));
+		bp = BiggerPicture({ target: document.body });
 	});
 </script>
 
 <div bind:this={galleryContainer} class="grid grid-cols-2 lg:grid-cols-3 gap-2">
 	{#each displayPhotos as p}
 		<a
-			href={p.src}
-			data-img={p.src}
+			href={base + p.src}
+			data-img={base + p.src}
 			data-alt={p.alt}
 			class="block h-60 overflow-hidden shadow-lg cursor-pointer transition duration-100 ease-in-out hover:opacity-80"
+			onclick={openGallery}
 		>
-			<img
-				src={p.src}
-				alt={p.alt}
-				loading="lazy"
-				class="w-full h-full object-cover"
-				onload={(e) => setNaturalSize(e.target)}
-			/>
+			<img src={base + p.thumbSrc} alt={p.alt} loading="lazy" class="w-full h-full object-cover" />
 		</a>
 	{/each}
 </div>
@@ -64,7 +68,7 @@
 {#if showMoreButton}
 	<div class="flex justify-center mt-6">
 		<a
-			href="/galeria"
+			href={base + '/galeria'}
 			class="inline-block px-6 py-3 text-white bg-gray-800 font-semibold rounded-lg shadow-md hover:bg-orange-600 transition-colors duration-200 ease-in-out"
 		>
 			Tovább a teljes galériához

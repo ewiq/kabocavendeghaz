@@ -3,15 +3,36 @@
 	import favicon from '$lib/assets/icon.png';
 	import { Menu, X } from 'lucide-svelte';
 	import { slide } from 'svelte/transition';
+	import { base } from '$app/paths';
+	import { beforeNavigate, afterNavigate } from '$app/navigation';
+
+	afterNavigate(({ to, from }) => {
+		if (to?.route.id !== from?.route.id && to?.url.hash === '') {
+			window.scrollTo({ top: 0, behavior: 'instant' });
+		}
+	});
 
 	let { children } = $props();
+
+	function createUrl(href: string) {
+		if (href.startsWith('/#')) {
+			return base + href;
+		}
+
+		if (href === '/') {
+			return base || '/';
+		}
+
+		return base + (href === '/' ? '' : href);
+	}
 
 	const navItems = [
 		{ name: 'Kezdőlap', href: '/' },
 		{ name: 'Galéria', href: '/galeria' },
 		{ name: 'Árak', href: '/#arak' },
 		{ name: 'Elérhetőség', href: '/#elerhetoseg' },
-		{ name: 'Rólunk', href: '/#rolunk' }
+		{ name: 'Rólunk', href: '/#rolunk' },
+		{ name: 'Programok', href: '/programok' }
 	];
 
 	let isMobileMenuOpen = $state(false);
@@ -29,7 +50,6 @@
 
 		window.addEventListener('scroll', handleScroll);
 
-		// Cleanup function runs when the effect is invalidated
 		return () => {
 			window.removeEventListener('scroll', handleScroll);
 		};
@@ -39,6 +59,10 @@
 <svelte:head>
 	<title>Kabóca Vendégház</title>
 	<link rel="icon" href={favicon} />
+	<meta
+		name="description"
+		content="Kabóca Vendégház Vácott. Kényelmes, gyermekbarát szálláshely a Dunakanyar szívében a kikapcsolódni vágyóknak."
+	/>
 	<link
 		href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap"
 		rel="stylesheet"
@@ -46,13 +70,13 @@
 </svelte:head>
 
 <div class="font-raleway min-h-screen flex flex-col">
-	<header class="bg-white shadow-md sticky top-0 z-10">
+	<header class="bg-white shadow-md fixed top-0 z-10 m-auto w-full h-24">
 		<div class="container mx-auto px-4 sm:px-6 lg:px-8">
 			<div class="flex justify-between items-end pt-2 relative">
-				<a href="/" class="flex items-center space-x-3">
+				<a href={createUrl('/')} class="flex items-center space-x-3">
 					<img
-						src="/assets/cigale.png"
-						alt="Kabóca Vendégház logó"
+						src={createUrl('/assets/cigale.png')}
+						alt="logó"
 						class="cicada-logo h-16 w-auto sm:h-20 hover:scale-105 transition duration-150 ease-in-out"
 					/>
 					<h1 class="text-4xl sm:text-4xl text-gray-800 block">Kabóca Vendégház</h1>
@@ -61,8 +85,8 @@
 				<nav class="hidden lg:flex space-x-8">
 					{#each navItems as item}
 						<a
-							href={item.href}
-							class="text-lg font-medium text-gray-600 hover:text-orange-600 transition duration-150 ease-in-out uppercase tracking-wider"
+							href={createUrl(item.href)}
+							class="text-lg font-medium hover:text-orange-600 transition duration-150 ease-in-out uppercase tracking-wider"
 						>
 							{item.name}
 						</a>
@@ -88,9 +112,9 @@
 						<div class="px-4 pt-4 pb-4 space-y-2 sm:px-3 bg-gray-50 border-t">
 							{#each navItems as item}
 								<a
-									href={item.href}
+									href={createUrl(item.href)}
 									onclick={() => (isMobileMenuOpen = false)}
-									class="block px-3 py-2 rounded-md text-lg font-medium text-gray-700 hover:bg-orange-50 hover:text-orange-600 uppercase tracking-wider"
+									class="block px-3 py-2 text-base font-medium text-gray-600 hover:text-orange-600 hover:bg-gray-100 rounded-md transition duration-150 ease-in-out uppercase tracking-wider"
 								>
 									{item.name}
 								</a>
@@ -102,7 +126,7 @@
 		</div>
 	</header>
 
-	<main class="grow">
+	<main class="grow mt-24">
 		{@render children()}
 	</main>
 
@@ -110,17 +134,19 @@
 		<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
 			<div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
 				<div>
-					<h3 class="text-xl mb-4 text-orange-400">Elérhetőség</h3>
-					<p class="text-gray-300">Vác, Dózsa György út 28</p>
+					<h3 class="text-xl mb-4 text-white font-bold">Elérhetőség</h3>
+					<p class="text-gray-300 mb-2">Vác, Dózsa György út 28</p>
 					<p class="text-gray-300 mb-2">pellet.philippe@gmail.com</p>
 					<p class="text-gray-300">+ 36 30 493 2559</p>
 					<p class="text-gray-300">+ 36 30 384 6843</p>
 				</div>
 
 				<div>
-					<h3 class="text-xl mb-4 text-orange-400">Információ</h3>
+					<h3 class="text-xl mb-4 text-white font-bold">Információ</h3>
 					<p class="text-gray-300 mb-4"><b>NTAK regisztrációs szám:</b> MA19004627</p>
-					<a href="/adatvedelmi" class="text-gray-300 hover:text-orange-400 transition duration-150"
+					<a
+						href={createUrl('/adatvedelmi')}
+						class="text-gray-300 hover:text-orange-400 transition duration-150"
 						>Adatvédelmi tájékoztató</a
 					>
 					<p class="text-gray-400 mt-4">&copy; {new Date().getFullYear()} Kabóca Vendégház</p>
