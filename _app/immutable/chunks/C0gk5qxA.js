@@ -1,1 +1,0 @@
-import{n as o,o as u,H as p,p as t,q as _,C as g,v as i,w as l,x as n,y as v}from"./CuWdJPEC.js";function E(d,r){let s=null,y=t;var a;if(t){s=v;for(var e=_(document.head);e!==null&&(e.nodeType!==g||e.data!==d);)e=i(e);if(e===null)l(!1);else{var f=i(e);e.remove(),n(f)}}t||(a=document.head.appendChild(o()));try{u(()=>r(a),p)}finally{y&&(l(!0),n(s))}}export{E as h};
