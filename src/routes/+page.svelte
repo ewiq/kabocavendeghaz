@@ -1,21 +1,15 @@
 <script lang="ts">
 	import Gallery from '$lib/components/Gallery.svelte';
 	import { allPhotos } from '$lib/data/galleryData';
-	import { writable } from 'svelte/store';
 	import { base } from '$app/paths';
-
-	const cursor = writable({ x: 0, y: 0, visible: false });
+	import HomepageGreeting from '$lib/components/sections/HomepageGreeting.svelte';
+	import Prices from '$lib/components/sections/Prices.svelte';
+	import Services from '$lib/components/sections/Services.svelte';
+	import Contact from '$lib/components/sections/Contact.svelte';
+	import AboutUs from '$lib/components/sections/AboutUs.svelte';
+	import Feedbacks from '$lib/components/sections/Feedbacks.svelte';
 
 	let limit = $state(9);
-
-	// Handlers for mouse movement and hover
-	function handleMouseMove(event: MouseEvent) {
-		cursor.set({ x: event.clientX + 15, y: event.clientY + 15, visible: true });
-	}
-
-	function handleMouseLeave() {
-		cursor.update((c) => ({ ...c, visible: false }));
-	}
 
 	function updateLimit() {
 		limit = window.innerWidth < 640 ? 8 : 9; // sm breakpoint (640px)
@@ -40,270 +34,15 @@
 </div>
 
 <div class="container mx-auto px-4 sm:px-6 lg:px-8 my-8">
-	<section class="text-center max-w-5xl mx-auto mb-16">
-		<p class="text-xl md:text-2xl text-gray-700 font-light leading-relaxed italic md:my-20">
-			Gondos ízléssel és kényelmesen berendezett vendégházunk ideális hely mindazok számára, akik
-			közel szeretnének maradni a fővároshoz, ugyanakkor távol a budapesti forgatagtól. <br
-			/>Nagyszerű kiindulópont ahhoz is, hogy felfedezzék Magyarország egyik legszebb régióját, a
-			Dunakanyart.
-		</p>
-	</section>
+	<HomepageGreeting></HomepageGreeting>
 
 	<section id="galeria" class="my-12 scroll-mt-32">
 		<Gallery photos={allPhotos} showMoreButton={true} {limit} />
 	</section>
 
-	<section id="arak" class="my-12 scroll-mt-32">
-		<h2 class="text-3xl font-bold text-gray-800 border-l-4 border-orange-500 pl-4 mb-8">Áraink</h2>
-
-		<!-- Adult pricing table -->
-		<div class="overflow-x-auto mb-12">
-			<h3 class="text-xl font-semibold text-gray-700 mb-4">
-				16 éves felettiek száma (éjszakánként)
-			</h3>
-			<div class="w-full text-center">
-				<div class="grid grid-cols-3 md:grid-cols-6">
-					<div class="px-4 py-2 bg-gray-100 font-bold">1 fő</div>
-					<div class="px-4 py-2 bg-gray-100 font-bold">2 fő</div>
-					<div class="px-4 py-2 bg-gray-100 font-bold">3 fő</div>
-
-					<div class="px-4 py-2 md:order-7">30 000 Ft</div>
-					<div class="px-4 py-2 md:order-8">30 000 Ft</div>
-					<div class="px-4 py-2 md:order-9">41 000 Ft</div>
-
-					<div class="px-4 py-2 bg-gray-100 font-bold">4 fő</div>
-					<div class="px-4 py-2 bg-gray-100 font-bold">5 fő</div>
-					<div class="px-4 py-2 bg-gray-100 font-bold">6 fő</div>
-
-					<div class="px-4 py-2">51 000 Ft</div>
-					<div class="px-4 py-2">60 000 Ft</div>
-					<div class="px-4 py-2">68 000 Ft</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Children pricing table -->
-		<div class="overflow-x-auto mb-12">
-			<h3 class="text-xl font-semibold text-gray-700 mb-4">Gyermekek (éjszakánként)</h3>
-			<div class="w-full text-center">
-				<div class="grid grid-cols-3">
-					<div class="px-4 py-2 bg-gray-100 font-bold">2 éves korig</div>
-					<div class="px-4 py-2 bg-gray-100 font-bold">2-12 éves korig</div>
-					<div class="px-4 py-2 bg-gray-100 font-bold">12-16 éves korig</div>
-
-					<div class="px-4 py-2 md:order-7">0 Ft</div>
-					<div class="px-4 py-2 md:order-8">6 800 Ft/fő</div>
-					<div class="px-4 py-2 md:order-9">7 800 Ft/fő</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Breakfast pricing table -->
-		<div class="overflow-x-auto mb-4">
-			<div class="overflow-x-auto mb-4">
-				<h3 class="text-xl font-semibold text-gray-700 mb-4">Reggeli* (fejenként)</h3>
-				<div class="w-full text-center">
-					<div class="grid grid-cols-3">
-						<div class="px-4 py-2 bg-gray-100 font-bold">12 éves kor alatt</div>
-						<div class="px-4 py-2 bg-gray-100 font-bold">12-18 éves korig</div>
-						<div class="px-4 py-2 bg-gray-100 font-bold">Felnőttek</div>
-
-						<div class="px-4 py-2 md:order-7">2 900 Ft/fő</div>
-						<div class="px-4 py-2 md:order-8">3 900 Ft/fő</div>
-						<div class="px-4 py-2 md:order-9">3 900 Ft/fő</div>
-					</div>
-				</div>
-				<div>
-					<p
-						class="text-gray-700 mt-2 italic"
-						onmousemove={handleMouseMove}
-						onmouseleave={handleMouseLeave}
-					>
-						*Egy bő reggelit biztosítunk, amely a következőket tartalmazza: szeletelt kenyér, vaj,
-						házi lekvárok, sonka, sajt, tojás, paradicsom/paprika, joghurt, 100%-os gyümölcslé,
-						kávé, tej, tea.
-					</p>
-				</div>
-			</div>
-		</div>
-
-		{#if $cursor.visible}
-			<img
-				src={base + '/photos/004.jpg'}
-				alt="Reggeli"
-				class="hover-image"
-				style="top: {$cursor.y}px; left: {$cursor.x}px;"
-			/>
-		{/if}
-
-		<p class="text-gray-600 font-semibold mt-2">
-			Az árak HUF-ban értendők és tartalmazzák az ÁFÁ-t. Külön fizetendő az idegenforgalmi adó,
-			melynek mértéke naponta 500 Ft minden 18. életévét betöltött vendég után.
-		</p>
-	</section>
-
-	<section class="my-12">
-		<h2 class="text-3xl font-bold text-gray-800 border-l-4 border-orange-500 pl-4 mb-8">
-			További szolgáltatások
-		</h2>
-
-		<div class="grid grid-cols-1 md:grid-cols-5 gap-8">
-			<!-- Left column: A ház -->
-			<div class="md:col-span-3">
-				<h3 class="text-xl font-semibold text-gray-700 mb-2">A ház</h3>
-				<p class="text-gray-700 mb-4">
-					A ház Vác belvárosától 10 perc sétányira található, a város kertvárosi, csöndesebb
-					részében, száz méterre a Dunaparttól és a kerékpárúttól. Kisebb baráti társaságok vagy
-					gyermekes (akár 3-4-5 gyermekes) családok fogadására alkalmas. Az alsó szinten egy nagy
-					amerikai konyhás nappali és egy veranda várja a vendégeket. Itt helyezkedik el a szülői
-					háló. A második szinten egy hálószoba található, illetve egy nagy nyitott tér
-					gyermekjátékokkal. Mindkét szinten van fürdőszoba, lent külön WC-vel.
-				</p>
-				<div class="flex gap-2">
-					<img
-						src={base + '/photos/01.jpg'}
-						alt="A ház"
-						class="rounded sm:w-1/2 w-full object-cover"
-					/>
-					<img
-						src={base + '/photos/thumb/1751633250664_thumb.jpg'}
-						alt="A borospince"
-						class="rounded sm:w-1/2 w-full object-cover"
-					/>
-				</div>
-			</div>
-
-			<!-- Right column: Borospince and Felszerelések -->
-			<div class="space-y-4 md:col-span-2">
-				<div>
-					<h3 class="text-xl font-semibold text-gray-700 mb-2">Borospince</h3>
-					<p class="text-gray-700">
-						A borospince a tulajdonos engedélyével, bizonyos feltételekkel használható.
-					</p>
-				</div>
-
-				<div>
-					<h3 class="text-xl font-semibold text-gray-700 mb-2">Felszerelések</h3>
-					<p class="text-gray-700 mb-2">Mosogatógép, mosógép</p>
-					<p class="text-gray-700 mb-2">Teljesen felszerelt konyha</p>
-					<p class="text-gray-700 mb-2">Légkondicionálás és padlófűtés minden szobában</p>
-					<p class="text-gray-700 mb-2">Benti parkolási lehetőség egy autónak</p>
-					<p class="text-gray-700 mb-2">
-						Gyermekbarát szolgáltatások: Utazóágy, etetőszék, gyermekjátékok.
-					</p>
-					<p class="text-gray-700">
-						Babysitter-szolgáltatást is vállalunk térítés ellenében kisgyermekes vendégeinknek.
-					</p>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section id="elerhetoseg" class="my-12 scroll-mt-32">
-		<h2 class="text-3xl font-bold text-gray-800 border-l-4 border-orange-500 pl-4 mb-8">
-			Elérhetőség
-		</h2>
-
-		<div class="grid grid-cols-1 md:grid-cols-5 gap-8">
-			<div class="md:col-span-2">
-				<h3 class="text-lg font-bold text-gray-700 mb-4">Cím: Vác, Dózsa György út 28.</h3>
-				<h3 class="text-lg font-bold text-gray-700 mb-4">
-					Kérjük a foglaláshoz írjon emailt, vagy hívjon fel az alábbi telefonszámok egyikén.
-				</h3>
-				<h3 class="text-lg text-gray-700 mb-4">
-					<a
-						class="text-gray-700 hover:text-orange-400 transition duration-150 ease-in-out hover:underline"
-						href="mailto:pellet.philippe@gmail.com">pellet.philippe@gmail.com</a
-					>
-				</h3>
-				<h3 class="text-lg text-gray-700 mb-4 phone-link">
-					<a href="teL:+36304932559">+ 36 30 493 2559</a>
-				</h3>
-				<h3 class="text-lg text-gray-700 mb-4 phone-link">
-					<a href="tel:+36303846843">+ 36 30 384 6843</a>
-				</h3>
-			</div>
-
-			<!-- Right column: Google Maps -->
-			<div class="space-y-8 md:col-span-3">
-				<div>
-					<div class="w-full h-64 rounded-lg overflow-hidden shadow-md">
-						<iframe
-							title="map"
-							src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2680.787512447016!2d19.11728797673009!3d47.785568175601334!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47402a8f00c54b9b%3A0x1359c90d3af6897f!2zS2Fiw7NjYSBWZW5kw6lnaMOheg!5e0!3m2!1shu!2shu!4v1764081101975!5m2!1shu!2shu"
-							width="100%"
-							height="100%"
-							style="border:0;"
-							loading="lazy"
-							referrerpolicy="no-referrer-when-downgrade"
-						></iframe>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section
-		id="rolunk"
-		class="scroll-mt-32 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start my-12"
-	>
-		<!-- Text & main image -->
-		<div class="lg:col-span-9 space-y-6">
-			<h2 class="text-3xl font-bold text-gray-800 border-l-4 border-orange-500 pl-4">Rólunk</h2>
-			<div class="flex flex-col sm:flex-row sm:items-start gap-4">
-				<img
-					src={base + '/assets/rolunk.jpg'}
-					alt="Rólunk"
-					class="rounded-sm sm:w-1/3 w-full object-cover"
-				/>
-				<div class="text-gray-600 sm:w-1/2">
-					<p>
-						Ötgyermekes francia-magyar család vagyunk. 2005 májusa óta élünk Magyarországon.
-						Korábban Párizsban, Versailles-ban, majd néhány évig Provence-ban laktunk. Régi vágyunk
-						volt egy vendégház üzemeltetése, ahol nem csak szállást kínálunk a hozzánk betérőknek,
-						hanem barátságot, nyelvtudást, házi finomságokat is – és talán sikerült a dél-francia
-						életérzésből is átcsempésznünk valamit.
-					</p>
-					<p class="mt-4">
-						Helyben lakunk, kertünk a vendégház kertjével érintkezik. Ugyanakkor a két ház két külön
-						utcára nyílik, így a vendégek teljes intimitásban élvezhetik a pihenést.
-					</p>
-				</div>
-			</div>
-		</div>
-
-		<!-- Booking award -->
-		<div class="lg:col-span-3 flex justify-end lg:justify-end items-end mt-6 lg:mt-0 h-full">
-			<a href="https://www.booking.com/hotel/hu/kaboca-vendeghaz.hu.html" target="_blank">
-				<img
-					src={base + '/assets/bookingaward2025.png'}
-					alt="Booking Award"
-					class="h-32 w-auto rounded-lg transition duration-150 hover:opacity-90 ease-in-out"
-				/>
-			</a>
-		</div>
-	</section>
+	<Prices></Prices>
+	<Services></Services>
+	<Contact></Contact>
+	<AboutUs></AboutUs>
+	<Feedbacks></Feedbacks>
 </div>
-
-<style>
-	.hover-image {
-		position: fixed;
-		pointer-events: none;
-		width: 320px;
-		height: auto;
-		border-radius: 6px;
-		transition:
-			transform 0.1s ease-out,
-			opacity 0.15s ease-in;
-		z-index: 9999;
-	}
-
-	@media (min-width: 768px) {
-		.phone-link a {
-			pointer-events: none;
-			color: inherit;
-			text-decoration: none;
-			cursor: default;
-		}
-	}
-</style>
