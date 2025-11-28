@@ -9,17 +9,21 @@
 	import AboutUs from '$lib/components/sections/AboutUs.svelte';
 	import Feedbacks from '$lib/components/sections/Feedbacks.svelte';
 
-	let limit = $state(9);
+	// Initialize with the correct value based on current window width
+	let limit = $state(typeof window !== 'undefined' ? (window.innerWidth < 1024 ? 8 : 9) : 9);
 
 	function updateLimit() {
-		limit = window.innerWidth < 640 ? 8 : 9; // sm breakpoint (640px)
+		limit = window.innerWidth < 1024 ? 8 : 9;
 	}
 
 	$effect(() => {
+		// Run immediately to set initial value
 		updateLimit();
 
+		// Add resize listener
 		window.addEventListener('resize', updateLimit);
 
+		// Cleanup
 		return () => window.removeEventListener('resize', updateLimit);
 	});
 </script>
@@ -34,11 +38,9 @@
 
 <div class="container mx-auto px-4 sm:px-6 lg:px-8 my-8">
 	<HomepageGreeting></HomepageGreeting>
-
 	<section id="galeria" class="my-12 scroll-mt-32">
 		<Gallery photos={allPhotos} showMoreButton={true} {limit} />
 	</section>
-
 	<Prices></Prices>
 	<Services></Services>
 	<Contact></Contact>

@@ -28,14 +28,21 @@
 		</div>
 	</div>
 
-	<!-- Booking award -->
-	<div class="lg:col-span-3 flex justify-end lg:justify-end items-end mt-6 lg:mt-0 h-full">
-		<a href="https://www.booking.com/hotel/hu/kaboca-vendeghaz.hu.html" target="_blank">
+	<!-- Awards -->
+	<div class="lg:col-span-3 flex justify-center lg:mt-0 h-full">
+		<div class="flex gap-4 flex-row lg:flex-col lg:w-full">
 			<img
-				src={base + '/assets/bookingaward2025.png'}
-				alt="Booking Award"
-				class="h-32 w-auto rounded-lg transition duration-150 hover:opacity-90 ease-in-out"
+				src={base + '/assets/kaboca_tanusitvany.png'}
+				alt="MTMT Tanusítvány"
+				class="h-40 lg:h-42 w-auto lg:w-full object-contain rounded-lg transition duration-150 hover:opacity-90 ease-in-out"
 			/>
-		</a>
+			<a href="https://www.booking.com/hotel/hu/kaboca-vendeghaz.hu.html" target="_blank">
+				<img
+					src={base + '/assets/bookingaward2025.png'}
+					alt="Booking Award"
+					class="h-40 lg:h-46 w-auto lg:w-full object-contain rounded-lg transition duration-150 hover:opacity-90 ease-in-out"
+				/>
+			</a>
+		</div>
 	</div>
 </section>

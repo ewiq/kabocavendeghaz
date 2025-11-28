@@ -76,7 +76,7 @@
 <div class="w-full h-72 overflow-hidden shadow-xl mb-6">
 	<img
 		src={base + '/assets/vac_banner.jpg'}
-		alt="Vác látképe, mint a programok banner képe"
+		alt="Vác látképe"
 		class="w-full h-full object-cover object-center"
 	/>
 </div>
