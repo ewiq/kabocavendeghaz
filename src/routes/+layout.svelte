@@ -10,6 +10,10 @@
 		if (to?.route.id !== from?.route.id && to?.url.hash === '') {
 			window.scrollTo({ top: 0, behavior: 'instant' });
 		}
+
+		if (to?.route.id === '/' && to?.url.hash) {
+			document.title = 'Kabóca Vendégház';
+		}
 	});
 
 	let { children } = $props();
