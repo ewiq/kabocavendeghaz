@@ -1,3 +1,15 @@
+<script>
+	const emailUser = 'pellet.philippe';
+	const emailHost = 'gmail.com';
+
+	const address = 'Vác, Dózsa György út 28.';
+
+	const phone1 = '+36 ' + '30 ' + '493 ' + '2559';
+	const phone2 = '+36 ' + '30 ' + '384 ' + '6843';
+
+	const email = `${emailUser}@${emailHost}`;
+</script>
+
 <section id="elerhetoseg" class="my-12 scroll-mt-32">
 	<h2 class="text-3xl font-bold text-gray-800 border-l-4 border-orange-500 pl-4 mb-8">
 		Elérhetőség
@@ -5,21 +17,21 @@
 
 	<div class="grid grid-cols-1 md:grid-cols-5 gap-8">
 		<div class="md:col-span-2">
-			<h3 class="text-lg font-bold text-gray-700 mb-4">Cím: Vác, Dózsa György út 28.</h3>
+			<h3 class="text-lg font-bold text-gray-700 mb-4">Cím: {address}</h3>
 			<h3 class="text-lg font-bold text-gray-700 mb-4">
 				Kérjük a foglaláshoz írjon emailt, vagy hívjon fel az alábbi telefonszámok egyikén.
 			</h3>
 			<h3 class="text-lg text-gray-700 mb-4">
 				<a
 					class="text-gray-700 hover:text-orange-400 transition duration-150 ease-in-out hover:underline"
-					href="mailto:pellet.philippe@gmail.com">pellet.philippe@gmail.com</a
+					href={'mailto:' + email}>{email}</a
 				>
 			</h3>
 			<h3 class="text-lg text-gray-700 mb-4 phone-link">
-				<a href="teL:+36304932559">+ 36 30 493 2559</a>
+				<a href={'tel:' + phone1}>{phone1}</a>
 			</h3>
 			<h3 class="text-lg text-gray-700 mb-4 phone-link">
-				<a href="tel:+36303846843">+ 36 30 384 6843</a>
+				<a href={'tel:' + phone2}>{phone2}</a>
 			</h3>
 		</div>
 

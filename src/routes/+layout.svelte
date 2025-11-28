@@ -35,6 +35,16 @@
 		{ name: 'Programok', href: '/programok' }
 	];
 
+	const emailUser = 'pellet.philippe';
+	const emailHost = 'gmail.com';
+
+	const address = 'Vác, Dózsa György út 28.';
+
+	const phone1 = '+36 ' + '30 ' + '493 ' + '2559';
+	const phone2 = '+36 ' + '30 ' + '384 ' + '6843';
+
+	const email = `${emailUser}@${emailHost}`;
+
 	let isMobileMenuOpen = $state(false);
 
 	function toggleMobileMenu() {
@@ -129,10 +139,10 @@
 			<div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
 				<div>
 					<h3 class="text-xl mb-4 text-white font-bold">Elérhetőség</h3>
-					<p class="text-gray-300 mb-2">Vác, Dózsa György út 28</p>
-					<p class="text-gray-300 mb-2">pellet.philippe@gmail.com</p>
-					<p class="text-gray-300">+ 36 30 493 2559</p>
-					<p class="text-gray-300">+ 36 30 384 6843</p>
+					<p class="text-gray-300 mb-2">{address}</p>
+					<p class="text-gray-300 mb-2">{email}</p>
+					<p class="text-gray-300">{phone1}</p>
+					<p class="text-gray-300">{phone2}</p>
 				</div>
 
 				<div>
