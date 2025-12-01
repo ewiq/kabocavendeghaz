@@ -21,21 +21,21 @@
 		<h3 class="text-xl font-semibold text-gray-700 mb-4">16 éves felettiek száma (éjszakánként)</h3>
 		<div class="w-full text-center">
 			<div class="grid grid-cols-3 md:grid-cols-6">
-				<div class="px-4 py-2 bg-gray-100 font-bold">1 fő</div>
-				<div class="px-4 py-2 bg-gray-100 font-bold">2 fő</div>
-				<div class="px-4 py-2 bg-gray-100 font-bold">3 fő</div>
+				<div class="px-4 py-2 bg-gray-100 font-bold md:order-1">1 fő</div>
+				<div class="px-4 py-2 bg-gray-100 font-bold md:order-2">2 fő</div>
+				<div class="px-4 py-2 bg-gray-100 font-bold md:order-3">3 fő</div>
 
 				<div class="px-4 py-2 md:order-7">30 000 Ft</div>
 				<div class="px-4 py-2 md:order-8">30 000 Ft</div>
 				<div class="px-4 py-2 md:order-9">41 000 Ft</div>
 
-				<div class="px-4 py-2 bg-gray-100 font-bold">4 fő</div>
-				<div class="px-4 py-2 bg-gray-100 font-bold">5 fő</div>
-				<div class="px-4 py-2 bg-gray-100 font-bold">6 fő</div>
+				<div class="px-4 py-2 bg-gray-100 font-bold md:order-4">4 fő</div>
+				<div class="px-4 py-2 bg-gray-100 font-bold md:order-5">5 fő</div>
+				<div class="px-4 py-2 bg-gray-100 font-bold md:order-6">6 fő</div>
 
-				<div class="px-4 py-2">51 000 Ft</div>
-				<div class="px-4 py-2">60 000 Ft</div>
-				<div class="px-4 py-2">68 000 Ft</div>
+				<div class="px-4 py-2 md:order-10">51 000 Ft</div>
+				<div class="px-4 py-2 md:order-11">60 000 Ft</div>
+				<div class="px-4 py-2 md:order-12">68 000 Ft</div>
 			</div>
 		</div>
 	</div>

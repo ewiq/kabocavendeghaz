@@ -11,7 +11,7 @@ export const feedbacks: Feedback[] = [
 		id: 1,
 		name: 'Júlia',
 		country: 'Magyarország',
-		text: 'Gyönyörű a ház, nagyon kedvesek a szállásadók. A reggeli kiváló volt. A szállás igényesen van berendezve, minden nagyon kényelmes és otthonos. Kisgyermekkel érkeztünk, nagyon sok játék állt rendelkezésre, így ő is nagyon élvezte az ott létet.',
+		text: 'Gyönyörű a ház, nagyon kedvesek a szállásadók. A reggeli kiváló volt. A szállás igényesen van berendezve, minden nagyon kényelmes és otthonos. Kisgyermekkel érkeztünk, nagyon sok játék állt rendelkezésre, így ő is nagyon élvezte az ottlétet.',
 		rating: 5
 	},
 	{
@@ -32,7 +32,7 @@ export const feedbacks: Feedback[] = [
 		id: 4,
 		name: 'Éva',
 		country: 'Magyarország',
-		text: 'Nagyon tetszetős annak ellenére, hogy régi bútorok vannak a szobákban. Közel a központhoz, komphoz. A házigazda készséges, türelmes volt pedig többször módosítottam a foglalást. Tágasak a helyiségek, bőven elfer benne egy nagy család vagy baráti társaság. Nagyon meglepett de jó értelemben a kis kápolna ami a kertben található. Jó volt egy kicsit elcsendesiteni az elmét. Mindenkinek csak ajánlani tudom.',
+		text: 'Nagyon tetszetős annak ellenére, hogy régi bútorok vannak a szobákban. Közel a központhoz, komphoz. A házigazda készséges és türelmes volt, pedig többször módosítottam a foglalást. Tágasak a helyiségek, bőven elfer benne egy nagy család vagy baráti társaság. Nagyon meglepett - jó értelemben - a kis kápolna ami a kertben található. Jó volt egy kicsit elcsendesiteni az elmét. Mindenkinek csak ajánlani tudom.',
 		rating: 5
 	}
 ];
