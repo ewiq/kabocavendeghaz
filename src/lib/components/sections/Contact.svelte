@@ -1,37 +1,29 @@
 <script>
-	const emailUser = 'pellet.philippe';
-	const emailHost = 'gmail.com';
-
-	const address = 'Vác, Dózsa György út 28.';
-
-	const phone1 = '+36 ' + '30 ' + '493 ' + '2559';
-	const phone2 = '+36 ' + '30 ' + '384 ' + '6843';
-
-	const email = `${emailUser}@${emailHost}`;
+	import { m } from '../../../paraglide/messages';
 </script>
 
 <section id="elerhetoseg" class="my-12 scroll-mt-32">
 	<h2 class="text-3xl font-bold text-gray-800 border-l-4 border-orange-500 pl-4 mb-8">
-		Elérhetőség
+		{m.contact_title()}
 	</h2>
 
 	<div class="grid grid-cols-1 md:grid-cols-5 gap-8">
 		<div class="md:col-span-2">
-			<h3 class="text-lg font-bold text-gray-700 mb-4">Cím: {address}</h3>
+			<h3 class="text-lg font-bold text-gray-700 mb-4">Cím: {m.address()}</h3>
 			<h3 class="text-lg font-bold text-gray-700 mb-4">
-				Kérjük a foglaláshoz írjon emailt, vagy hívjon fel az alábbi telefonszámok egyikén.
+				{m.contact_description()}
 			</h3>
 			<h3 class="text-lg text-gray-700 mb-4">
 				<a
 					class="text-gray-700 hover:text-orange-400 transition duration-150 ease-in-out hover:underline"
-					href={'mailto:' + email}>{email}</a
+					href={'mailto:' + m.contact_email()}>{m.contact_email()}</a
 				>
 			</h3>
 			<h3 class="text-lg text-gray-700 mb-4 phone-link">
-				<a href={'tel:' + phone1}>{phone1}</a>
+				<a href={`tel:${m.phone_number_2().replace(/\s/g, '')}`}>{m.phone_number_1()}</a>
 			</h3>
 			<h3 class="text-lg text-gray-700 mb-4 phone-link">
-				<a href={'tel:' + phone2}>{phone2}</a>
+				<a href={`tel:${m.phone_number_2().replace(/\s/g, '')}`}>{m.phone_number_2()}</a>
 			</h3>
 		</div>
 

@@ -2,6 +2,7 @@
 	import BiggerPicture from 'bigger-picture';
 	import 'bigger-picture/css';
 	import { base } from '$app/paths';
+	import { m } from '../../paraglide/messages';
 
 	interface Photo {
 		src: string;
@@ -22,7 +23,7 @@
 	const displayPhotos = limit ? photos.slice(0, limit) : photos;
 
 	let galleryContainer: HTMLDivElement;
-	let bp: BiggerPicture | undefined;
+	let bp: ReturnType<typeof BiggerPicture> | undefined;
 
 	function openGallery(e: MouseEvent) {
 		e.preventDefault();
@@ -40,7 +41,7 @@
 				maxZoom: 1,
 				width: p.width,
 				height: p.height,
-				element: galleryContainer.querySelector(`a[href="${base + p.src}"]`)
+				element: galleryContainer.querySelector(`a[href="${base + p.src}"]`) ?? undefined
 			})),
 			el: target
 		});
@@ -71,7 +72,7 @@
 			href={base + '/galeria'}
 			class="inline-block px-6 py-3 text-white bg-gray-800 font-semibold rounded-lg shadow-md hover:bg-orange-600 transition-colors duration-200 ease-in-out"
 		>
-			Tovább a teljes galériához
+			{m.view_full_gallery()}
 		</a>
 	</div>
 {/if}

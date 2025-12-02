@@ -2,6 +2,7 @@
 	import Gallery from '$lib/components/Gallery.svelte';
 	import { allPhotos } from '$lib/data/galleryData';
 	import { base } from '$app/paths';
+	import { m } from '../paraglide/messages';
 	import HomepageGreeting from '$lib/components/sections/HomepageGreeting.svelte';
 	import Prices from '$lib/components/sections/Prices.svelte';
 	import Services from '$lib/components/sections/Services.svelte';
@@ -31,7 +32,7 @@
 <div class="w-full h-72 overflow-hidden shadow-xl mb-6">
 	<img
 		src={base + '/photos/1751633251787.jpg'}
-		alt="Kabóca vendégház nappalija"
+		alt={m.hero_image_alt()}
 		class="w-full h-full object-cover object-center"
 	/>
 </div>

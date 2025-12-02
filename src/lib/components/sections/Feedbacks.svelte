@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { feedbacks } from '$lib/data/feedbackData';
 	import { ChevronLeft, ChevronRight, Star, MapPin } from 'lucide-svelte';
+	import { m } from '../../../paraglide/messages';
 
 	let currentIndex = $state(0);
-	let autoplayInterval: number;
+	let autoplayInterval: ReturnType<typeof setInterval>;
 	let isDragging = $state(false);
 	let startX = $state(0);
 	let currentTranslate = $state(0);
@@ -98,7 +99,7 @@
 <section id="visszajelzesek" class="scroll-mt-32 my-12">
 	<div class="mb-8">
 		<h2 class="text-3xl font-bold text-gray-800 border-l-4 border-orange-500 pl-4 inline-block">
-			Vélemények
+			{m.testimonials_title()}
 		</h2>
 	</div>
 
@@ -166,7 +167,7 @@
 		<button
 			onclick={prevSlide}
 			class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-orange-500 hover:cursor-pointer text-gray-800 rounded-full p-2 shadow-lg transition-all duration-200 hover:scale-110"
-			aria-label="Előző vélemény"
+			aria-label={m.previous_testimonial()}
 		>
 			<ChevronLeft class="w-6 h-6" />
 		</button>
@@ -174,7 +175,7 @@
 		<button
 			onclick={nextSlide}
 			class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-orange-500 hover:cursor-pointer text-gray-800 rounded-full p-2 shadow-lg transition-all duration-200 hover:scale-110"
-			aria-label="Következő vélemény"
+			aria-label={m.next_testimonial()}
 		>
 			<ChevronRight class="w-6 h-6" />
 		</button>
@@ -186,7 +187,7 @@
 					class="w-3 h-3 rounded-full transition-all duration-300 {index === currentIndex
 						? 'bg-orange-500'
 						: 'bg-gray-300'}"
-					aria-label="Ugrás a véleményre {index + 1}"
+					aria-label={m.go_to_testimonial({ index: index + 1 })}
 				></button>
 			{/each}
 		</div>

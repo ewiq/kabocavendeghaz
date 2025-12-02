@@ -1,10 +1,39 @@
 <script lang="ts">
+	import { m } from '../paraglide/messages';
 	import './layout.css';
+	import { locales, localizeHref } from '../paraglide/runtime';
 	import favicon from '$lib/assets/icon.png';
-	import { Menu, X } from 'lucide-svelte';
+	import { Globe, Menu, X } from 'lucide-svelte';
 	import { slide } from 'svelte/transition';
 	import { base } from '$app/paths';
 	import { afterNavigate } from '$app/navigation';
+	import { page } from '$app/state';
+
+	let { children } = $props();
+
+	const languages = [
+		{ code: 'HU', name: 'Magyar', flag: '🇭🇺' },
+		{ code: 'EN', name: 'English', flag: '🇬🇧' },
+		{ code: 'FR', name: 'Français', flag: '🇫🇷' }
+	];
+
+	let currentLanguage = $state('HU');
+
+	const navItems = [
+		{ name: m.home(), href: '/' },
+		{ name: m.gallery(), href: '/galeria' },
+		{ name: m.prices(), href: '/#arak' },
+		{ name: m.contact(), href: '/#elerhetoseg' },
+		{ name: m.about(), href: '/#rolunk' },
+		{ name: m.programs(), href: '/programok' }
+	];
+
+	let isMobileMenuOpen = $state(false);
+	let isLanguageDropdownOpen = $state(false);
+
+	function toggleMobileMenu() {
+		isMobileMenuOpen = !isMobileMenuOpen;
+	}
 
 	afterNavigate(({ to, from }) => {
 		if (to?.route.id !== from?.route.id && to?.url.hash === '') {
@@ -14,9 +43,9 @@
 		if (to?.route.id === '/' && to?.url.hash) {
 			document.title = 'Kabóca Vendégház';
 		}
-	});
 
-	let { children } = $props();
+		isLanguageDropdownOpen = false;
+	});
 
 	function createUrl(href: string) {
 		if (href.startsWith('/#')) {
@@ -30,35 +59,18 @@
 		return base + (href === '/' ? '' : href);
 	}
 
-	const navItems = [
-		{ name: 'Kezdőlap', href: '/' },
-		{ name: 'Galéria', href: '/galeria' },
-		{ name: 'Árak', href: '/#arak' },
-		{ name: 'Elérhetőség', href: '/#elerhetoseg' },
-		{ name: 'Rólunk', href: '/#rolunk' },
-		{ name: 'Programok', href: '/programok' }
-	];
-
-	const emailUser = 'pellet.philippe';
-	const emailHost = 'gmail.com';
-
-	const address = 'Vác, Dózsa György út 28.';
-
-	const phone1 = '+36 ' + '30 ' + '493 ' + '2559';
-	const phone2 = '+36 ' + '30 ' + '384 ' + '6843';
-
-	const email = `${emailUser}@${emailHost}`;
-
-	let isMobileMenuOpen = $state(false);
-
-	function toggleMobileMenu() {
-		isMobileMenuOpen = !isMobileMenuOpen;
+	function toggleLanguageDropdown() {
+		isLanguageDropdownOpen = !isLanguageDropdownOpen;
 	}
 
 	$effect(() => {
 		const handleScroll = () => {
 			if (isMobileMenuOpen) {
 				isMobileMenuOpen = false;
+			}
+
+			if (isLanguageDropdownOpen) {
+				isLanguageDropdownOpen = false;
 			}
 		};
 
@@ -83,8 +95,14 @@
 	/>
 </svelte:head>
 
+<div class="hidden">
+	{#each locales as locale}
+		<a href={localizeHref(page.url.pathname, { locale })}>{locale}</a>
+	{/each}
+</div>
+
 <div class="font-raleway min-h-screen flex flex-col">
-	<header class="bg-white shadow-md fixed top-0 z-10 m-auto w-full h-24">
+	<header class="bg-white shadow-md fixed top-0 z-10 m-auto w-full min-h-24 h-24">
 		<div class="container mx-auto px-4 sm:px-6 lg:px-8 h-full">
 			<div class="flex justify-between items-end pb-2 relative h-full">
 				<a href={createUrl('/')} class="flex items-center space-x-3">
@@ -93,7 +111,9 @@
 						alt="logó"
 						class="cicada-logo h-16 w-auto sm:h-20 hover:scale-105 transition duration-150 ease-in-out"
 					/>
-					<h1 class="text-3xl xl:text-4xl text-gray-800 block">Kabóca Vendégház</h1>
+					<h1 class="lg:invisible xl:visible text-3xl xl:text-4xl text-gray-800 block">
+						Kabóca Vendégház
+					</h1>
 				</a>
 				<nav class="hidden lg:flex space-x-6">
 					{#each navItems as item}
@@ -104,6 +124,32 @@
 							{item.name}
 						</a>
 					{/each}
+
+					<div class="relative">
+						<button
+							onclick={toggleLanguageDropdown}
+							class="relative flex flex-row items-center space-x-2 pl-2 hover:text-orange-600 transition duration-150 uppercase tracking-wider cursor-pointer"
+						>
+							<Globe class="h-5 w-5"></Globe>
+							<p class="text-lg">{currentLanguage}</p>
+						</button>
+
+						{#if isLanguageDropdownOpen}
+							<div
+								transition:slide={{ duration: 150 }}
+								class="absolute top-full h-32 mb-2 mt-2 w-48 right-0 flex flex-col bg-white"
+							>
+								{#each languages as lang}
+									<button
+										class="h-12 w-full text-left flex flex-row items-center space-x-2 pl-2 hover:text-orange-600 hover:bg-gray-100 transition duration-150 tracking-wider cursor-pointer"
+									>
+										<span class="text-xl">{lang.flag}</span>
+										<span class="text-lg">{lang.name}</span>
+									</button>
+								{/each}
+							</div>
+						{/if}
+					</div>
 				</nav>
 				<button
 					onclick={toggleMobileMenu}
@@ -129,6 +175,16 @@
 							{item.name}
 						</a>
 					{/each}
+
+					<Globe class="ml-auto h-5 w-5 text-gray-600"></Globe>
+					{#each languages as lang}
+						<button
+							class="h-8 w-full flex flex-row items-center justify-end space-x-2 pl-2 hover:text-orange-600 hover:bg-gray-100 transition duration-150 tracking-wider cursor-pointer"
+						>
+							<span class="text-lg">{lang.flag}</span>
+							<span class="text-normal text-gray-600">{lang.name}</span>
+						</button>
+					{/each}
 				</div>
 			</div>
 		{/if}
@@ -143,10 +199,10 @@
 			<div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
 				<div>
 					<h3 class="text-xl mb-4 text-white font-bold">Elérhetőség</h3>
-					<p class="text-gray-300 mb-2">{address}</p>
-					<p class="text-gray-300 mb-2">{email}</p>
-					<p class="text-gray-300">{phone1}</p>
-					<p class="text-gray-300">{phone2}</p>
+					<p class="text-gray-300 mb-2">{m.address()}</p>
+					<p class="text-gray-300 mb-2">{m.contact_email()}</p>
+					<p class="text-gray-300">{m.phone_number_1()}</p>
+					<p class="text-gray-300">{m.phone_number_2()}</p>
 				</div>
 
 				<div>
