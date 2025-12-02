@@ -20,7 +20,7 @@
 				>
 			</h3>
 			<h3 class="text-lg text-gray-700 mb-4 phone-link">
-				<a href={`tel:${m.phone_number_2().replace(/\s/g, '')}`}>{m.phone_number_1()}</a>
+				<a href={`tel:${m.phone_number_1().replace(/\s/g, '')}`}>{m.phone_number_1()}</a>
 			</h3>
 			<h3 class="text-lg text-gray-700 mb-4 phone-link">
 				<a href={`tel:${m.phone_number_2().replace(/\s/g, '')}`}>{m.phone_number_2()}</a>
