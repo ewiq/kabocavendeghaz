@@ -1,0 +1,1 @@
+import{g as t}from"./Baf-U2EE.js";const r=()=>"Vissza a főoldalra",a=()=>"Back to homepage",c=()=>"Retour à l'accueil",_=(n={},e={})=>{const o=e.locale??t();return o==="hu"?r():o==="en"?a():c()};export{_ as b};
