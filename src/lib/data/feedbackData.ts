@@ -6,33 +6,36 @@ export interface Feedback {
 	rating: number;
 }
 
-export const feedbacks: Feedback[] = [
-	{
-		id: 1,
-		name: 'Júlia',
-		country: 'Magyarország',
-		text: 'Gyönyörű a ház, nagyon kedvesek a szállásadók. A reggeli kiváló volt. A szállás igényesen van berendezve, minden nagyon kényelmes és otthonos. Kisgyermekkel érkeztünk, nagyon sok játék állt rendelkezésre, így ő is nagyon élvezte az ottlétet.',
-		rating: 5
-	},
-	{
-		id: 2,
-		name: 'Jan',
-		country: 'Slovenia',
-		text: "Rooms were big and comfortable, there was really a lot of space, there's a piano which we really loved. Place was clean and had everything that we needed. Owner and his wife were responsive and really really helpful.",
-		rating: 5
-	},
-	{
-		id: 3,
-		name: 'Zsuzsanna',
-		country: 'Magyarország',
-		text: 'A vendégház egyszerűen gyönyörű, nagyon barátságos, finom ízléssel berendezett, és jól felszerelt. Isteni reggelit kaptunk, mindenből a legjobb minőséget tették az asztalra, külön dícséret illeti a szállásadók saját készítésű házilekvárait. És a szállásadók is igazán kedvesek voltak!',
-		rating: 5
-	},
-	{
-		id: 4,
-		name: 'Éva',
-		country: 'Magyarország',
-		text: 'Nagyon tetszetős annak ellenére, hogy régi bútorok vannak a szobákban. Közel a központhoz, komphoz. A házigazda készséges és türelmes volt, pedig többször módosítottam a foglalást. Tágasak a helyiségek, bőven elfer benne egy nagy család vagy baráti társaság. Nagyon meglepett - jó értelemben - a kis kápolna ami a kertben található. Jó volt egy kicsit elcsendesiteni az elmét. Mindenkinek csak ajánlani tudom.',
-		rating: 5
-	}
-];
+// This function creates feedback objects using the current language messages
+export function getFeedbacks(m: any): Feedback[] {
+	return [
+		{
+			id: 1,
+			name: m.feedbacks_1_name(),
+			country: m.feedbacks_1_country(),
+			text: m.feedbacks_1_text(),
+			rating: parseInt(m.feedbacks_1_rating())
+		},
+		{
+			id: 2,
+			name: m.feedbacks_2_name(),
+			country: m.feedbacks_2_country(),
+			text: m.feedbacks_2_text(),
+			rating: parseInt(m.feedbacks_2_rating())
+		},
+		{
+			id: 3,
+			name: m.feedbacks_3_name(),
+			country: m.feedbacks_3_country(),
+			text: m.feedbacks_3_text(),
+			rating: parseInt(m.feedbacks_3_rating())
+		},
+		{
+			id: 4,
+			name: m.feedbacks_4_name(),
+			country: m.feedbacks_4_country(),
+			text: m.feedbacks_4_text(),
+			rating: parseInt(m.feedbacks_4_rating())
+		}
+	];
+}

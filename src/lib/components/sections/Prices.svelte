@@ -24,18 +24,30 @@
 		<h3 class="text-xl font-semibold text-gray-900 mb-4">{m.adults_pricing_title()}</h3>
 		<div class="w-full text-center">
 			<div class="grid grid-cols-3 md:grid-cols-6">
-				<div class="px-4 py-2 bg-gray-100 font-bold md:order-1">{m.person_count_1()}</div>
-				<div class="px-4 py-2 bg-gray-100 font-bold md:order-2">{m.person_count_2()}</div>
-				<div class="px-4 py-2 bg-gray-100 font-bold md:order-3">{m.person_count_3()}</div>
-				<div class="px-4 py-2 md:order-7">{m.price_1()}</div>
-				<div class="px-4 py-2 md:order-8">{m.price_2()}</div>
-				<div class="px-4 py-2 md:order-9">{m.price_3()}</div>
-				<div class="px-4 py-2 bg-gray-100 font-bold md:order-4">{m.person_count_4()}</div>
-				<div class="px-4 py-2 bg-gray-100 font-bold md:order-5">{m.person_count_5()}</div>
-				<div class="px-4 py-2 bg-gray-100 font-bold md:order-6">{m.person_count_6()}</div>
-				<div class="px-4 py-2 md:order-10">{m.price_4()}</div>
-				<div class="px-4 py-2 md:order-11">{m.price_5()}</div>
-				<div class="px-4 py-2 md:order-12">{m.price_6()}</div>
+				<div class="whitespace-nowrap px-4 py-2 bg-gray-100 font-bold md:order-1">
+					{m.person_count_1()}
+				</div>
+				<div class="whitespace-nowrap px-4 py-2 bg-gray-100 font-bold md:order-2">
+					{m.person_count_2()}
+				</div>
+				<div class="whitespace-nowrap px-4 py-2 bg-gray-100 font-bold md:order-3">
+					{m.person_count_3()}
+				</div>
+				<div class="whitespace-nowrap px-4 py-2 md:order-7">{m.price_1()}</div>
+				<div class="whitespace-nowrap px-4 py-2 md:order-8">{m.price_2()}</div>
+				<div class="whitespace-nowrap px-4 py-2 md:order-9">{m.price_3()}</div>
+				<div class="whitespace-nowrap px-4 py-2 bg-gray-100 font-bold md:order-4">
+					{m.person_count_4()}
+				</div>
+				<div class="whitespace-nowrap px-4 py-2 bg-gray-100 font-bold md:order-5">
+					{m.person_count_5()}
+				</div>
+				<div class="whitespace-nowrap px-4 py-2 bg-gray-100 font-bold md:order-6">
+					{m.person_count_6()}
+				</div>
+				<div class="whitespace-nowrap px-4 py-2 md:order-10">{m.price_4()}</div>
+				<div class="whitespace-nowrap px-4 py-2 md:order-11">{m.price_5()}</div>
+				<div class="whitespace-nowrap px-4 py-2 md:order-12">{m.price_6()}</div>
 			</div>
 		</div>
 	</div>

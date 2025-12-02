@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { getLocale, setLocale } from '../paraglide/runtime';
 	import { m } from '../paraglide/messages';
 	import './layout.css';
 	import { locales, localizeHref } from '../paraglide/runtime';
@@ -17,8 +18,6 @@
 		{ code: 'FR', name: 'Français', flag: '🇫🇷' }
 	];
 
-	let currentLanguage = $state('HU');
-
 	const navItems = [
 		{ name: m.home(), href: '/' },
 		{ name: m.gallery(), href: '/galeria' },
@@ -30,9 +29,15 @@
 
 	let isMobileMenuOpen = $state(false);
 	let isLanguageDropdownOpen = $state(false);
+	let isMobileLanguageDropdownOpen = $state(false);
 
 	function toggleMobileMenu() {
 		isMobileMenuOpen = !isMobileMenuOpen;
+		isMobileLanguageDropdownOpen = false;
+	}
+
+	function toggleMobileLanguageDropdown() {
+		isMobileLanguageDropdownOpen = !isMobileLanguageDropdownOpen;
 	}
 
 	afterNavigate(({ to, from }) => {
@@ -45,7 +50,20 @@
 		}
 
 		isLanguageDropdownOpen = false;
+		isMobileLanguageDropdownOpen = false;
 	});
+
+	function createLocalizedUrl(currentPath: string, targetLocale: string) {
+		// 1. Strip the base path if it exists in the current path
+		const pathWithoutBase =
+			base && currentPath.startsWith(base) ? currentPath.slice(base.length) : currentPath;
+
+		// 2. Generate the localized path (e.g., /en/about)
+		const localizedPath = localizeHref(pathWithoutBase || '/', { locale: targetLocale });
+
+		// 3. Re-attach the base path (ensure we don't double slash)
+		return (base || '') + localizedPath;
+	}
 
 	function createUrl(href: string) {
 		if (href.startsWith('/#')) {
@@ -97,7 +115,7 @@
 
 <div class="hidden">
 	{#each locales as locale}
-		<a href={localizeHref(page.url.pathname, { locale })}>{locale}</a>
+		<!-- <a href={base + localizeHref(page.url.pathname, { locale })}>{locale}</a> -->
 	{/each}
 </div>
 
@@ -112,7 +130,7 @@
 						class="cicada-logo h-16 w-auto sm:h-20 hover:scale-105 transition duration-150 ease-in-out"
 					/>
 					<h1 class="lg:invisible xl:visible text-3xl xl:text-4xl text-gray-800 block">
-						Kabóca Vendégház
+						{m.app_title()}
 					</h1>
 				</a>
 				<nav class="hidden lg:flex space-x-6">
@@ -128,20 +146,24 @@
 					<div class="relative">
 						<button
 							onclick={toggleLanguageDropdown}
-							class="relative flex flex-row items-center space-x-2 pl-2 hover:text-orange-600 transition duration-150 uppercase tracking-wider cursor-pointer"
+							class:!text-gray-900={isLanguageDropdownOpen}
+							class="text-gray-600 relative flex flex-row items-center space-x-2 pl-2 hover:text-orange-600 transition duration-150 uppercase tracking-wider cursor-pointer"
 						>
 							<Globe class="h-5 w-5"></Globe>
-							<p class="text-lg">{currentLanguage}</p>
+							<p class="text-lg w-8">{getLocale().toUpperCase()}</p>
 						</button>
 
 						{#if isLanguageDropdownOpen}
 							<div
 								transition:slide={{ duration: 150 }}
-								class="absolute top-full h-32 mb-2 mt-2 w-48 right-0 flex flex-col bg-white"
+								class="absolute top-full mb-2 mt-2 w-40 -right-4 flex flex-col bg-white border-t border-gray-400"
 							>
 								{#each languages as lang}
 									<button
-										class="h-12 w-full text-left flex flex-row items-center space-x-2 pl-2 hover:text-orange-600 hover:bg-gray-100 transition duration-150 tracking-wider cursor-pointer"
+										class:!text-orange-600={getLocale().toLowerCase() === lang.code.toLowerCase()}
+										class:!bg-gray-100={getLocale().toLowerCase() === lang.code.toLowerCase()}
+										onclick={setLocale(lang.code.toLowerCase())}
+										class="h-12 w-full justify-end flex flex-row items-center space-x-2 px-4 hover:text-orange-600 hover:bg-gray-100 transition duration-150 tracking-wider cursor-pointer"
 									>
 										<span class="text-xl">{lang.flag}</span>
 										<span class="text-lg">{lang.name}</span>
@@ -176,15 +198,25 @@
 						</a>
 					{/each}
 
-					<Globe class="ml-auto h-5 w-5 text-gray-600"></Globe>
-					{#each languages as lang}
-						<button
-							class="h-8 w-full flex flex-row items-center justify-end space-x-2 pl-2 hover:text-orange-600 hover:bg-gray-100 transition duration-150 tracking-wider cursor-pointer"
-						>
-							<span class="text-lg">{lang.flag}</span>
-							<span class="text-normal text-gray-600">{lang.name}</span>
-						</button>
-					{/each}
+					<Globe
+						class="ml-auto h-5 w-5 text-gray-600 hover:text-orange-600 hover:bg-gray-100 transition duration-150 tracking-wider cursor-pointer"
+						onclick={toggleMobileLanguageDropdown}
+					></Globe>
+					{#if isMobileLanguageDropdownOpen}
+						<div transition:slide={{ duration: 150 }}>
+							{#each languages as lang}
+								<button
+									class:!bg-gray-100={getLocale().toLowerCase() === lang.code.toLowerCase()}
+									onclick={setLocale(lang.code.toLowerCase())}
+									transition:slide={{ duration: 150 }}
+									class="py-4 h-10 w-full flex flex-row items-center justify-end space-x-2 pl-2 hover:text-orange-600 hover:bg-gray-100 transition duration-150 tracking-wider cursor-pointer"
+								>
+									<span class="text-normal text-gray-600">{lang.name}</span>
+									<span class="text-lg">{lang.flag}</span>
+								</button>
+							{/each}
+						</div>
+					{/if}
 				</div>
 			</div>
 		{/if}
@@ -198,7 +230,7 @@
 		<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
 			<div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
 				<div>
-					<h3 class="text-xl mb-4 text-white font-bold">Elérhetőség</h3>
+					<h3 class="text-xl mb-4 text-white font-bold">{m.contact()}</h3>
 					<p class="text-gray-300 mb-2">{m.address()}</p>
 					<p class="text-gray-300 mb-2">{m.contact_email()}</p>
 					<p class="text-gray-300">{m.phone_number_1()}</p>
@@ -206,14 +238,14 @@
 				</div>
 
 				<div>
-					<h3 class="text-xl mb-4 text-white font-bold">Információ</h3>
-					<p class="text-gray-300 mb-4"><b>NTAK regisztrációs szám:</b> MA19004627</p>
+					<h3 class="text-xl mb-4 text-white font-bold">{m.information_title()}</h3>
+					<p class="text-gray-300 mb-4"><b>{m.ntak_registration()} </b> {m.ntak_number()}</p>
 					<a
 						href={createUrl('/adatvedelmi')}
 						class="text-gray-300 hover:text-orange-400 transition duration-150"
-						>Adatvédelmi tájékoztató</a
+						>{m.privacy_policy()}</a
 					>
-					<p class="text-gray-400 mt-4">&copy; {new Date().getFullYear()} Kabóca Vendégház</p>
+					<p class="text-gray-400 mt-4">&copy; {new Date().getFullYear()} {m.app_title()}</p>
 				</div>
 			</div>
 		</div>

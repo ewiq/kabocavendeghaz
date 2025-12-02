@@ -122,5 +122,25 @@
 
 	"contact_email": "pellet.philippe@gmail.com",
 	"phone_number_1": "+36 30 493 2559'",
-	"phone_number_2": "+36 30 384 6843"
+	"phone_number_2": "+36 30 384 6843",
+
+	"feedbacks_1_name": "Júlia",
+	"feedbacks_1_country": "Magyarország",
+	"feedbacks_1_text": "Gyönyörű a ház, nagyon kedvesek a szállásadók. A reggeli kiváló volt. A szállás igényesen van berendezett, minden nagyon kényelmes és otthonos. Kisgyermekkel érkeztünk, nagyon sok játék állt rendelkezésre, így ő is nagyon élvezte az ottlétet.",
+	"feedbacks_1_rating": "5",
+
+	"feedbacks_2_name": "Jan",
+	"feedbacks_2_country": "Slovenia",
+	"feedbacks_2_text": "A szobák nagyok és kényelmesek voltak, nagyon sok hely volt. Van egy zongora, ami nagyon tetszett nekünk. A hely tiszta volt, és minden megtalálható volt, amire szükségünk volt. A tulajdonos és felesége figyelmesek és rendkívül segítőkészek voltak.",
+	"feedbacks_2_rating": "5",
+
+	"feedbacks_3_name": "Zsuzsanna",
+	"feedbacks_3_country": "Magyarország",
+	"feedbacks_3_text": "A vendégház egyszerűen gyönyörű, nagyon barátságos, finom ízléssel berendezett, és jól felszerelt. Isteni reggelit kaptunk, mindenből a legjobb minőséget tették az asztalra, külön dícséret illeti a szállásadók saját készítésű házilekvárait. És a szállásadók is igazán kedvesek voltak!",
+	"feedbacks_3_rating": "5",
+
+	"feedbacks_4_name": "Éva",
+	"feedbacks_4_country": "Magyarország",
+	"feedbacks_4_text": "Nagyon tetszetős annak ellenére, hogy régi bútorok vannak a szobákban. Közel a központhoz, komphoz. A házigazda készséges és türelmes volt, pedig többször módosítottam a foglalást. Tágasak a helyiségek, bőven elfér benne egy nagy család vagy baráti társaság. Nagyon meglepett – jó értelemben – a kis kápolna ami a kertben található. Jó volt egy kicsit elcsendesíteni az elmét. Mindenkinek csak ajánlani tudom.",
+	"feedbacks_4_rating": "5"
 }

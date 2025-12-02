@@ -1,3 +1,3 @@
 ## TODO
 
-- add minoseg tanusitvany scan
+- Fix locale url imprecision

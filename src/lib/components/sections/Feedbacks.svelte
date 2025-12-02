@@ -1,7 +1,10 @@
 <script lang="ts">
-	import { feedbacks } from '$lib/data/feedbackData';
+	import { getFeedbacks } from '$lib/data/feedbackData';
 	import { ChevronLeft, ChevronRight, Star, MapPin } from 'lucide-svelte';
 	import { m } from '../../../paraglide/messages';
+
+	// Get feedbacks using the current language
+	const feedbacks = getFeedbacks(m);
 
 	let currentIndex = $state(0);
 	let autoplayInterval: ReturnType<typeof setInterval>;
