@@ -1,1 +1,0 @@
-import{o,p as u,H as p,v as t,w as _,C as g,x as i,y as l,z as d,A as v}from"./B1DpfaPL.js";function E(n,r){let s=null,y=t;var a;if(t){s=v;for(var e=_(document.head);e!==null&&(e.nodeType!==g||e.data!==n);)e=i(e);if(e===null)l(!1);else{var f=i(e);e.remove(),d(f)}}t||(a=document.head.appendChild(o()));try{u(()=>r(a),p)}finally{y&&(l(!0),d(s))}}export{E as h};

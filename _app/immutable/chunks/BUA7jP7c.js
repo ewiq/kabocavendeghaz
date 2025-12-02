@@ -1,0 +1,1 @@
+import{g as e}from"./BY53H0yX.js";const n=()=>"Kabóca Vendégház",o=()=>"Kabóca Vendégház",c=()=>"Kabóca Vendégház",i=(r={},a={})=>{const t=a.locale??e();return t==="hu"?n():t==="en"?o():c()},s=()=>"Vissza a főoldalra",l=()=>"Vissza a főoldalra",u=()=>"Vissza a főoldalra",p=(r={},a={})=>{const t=a.locale??e();return t==="hu"?s():t==="en"?l():u()};export{i as a,p as b};
