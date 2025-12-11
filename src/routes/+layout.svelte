@@ -240,11 +240,28 @@
 				<div>
 					<h3 class="text-xl mb-4 text-white font-bold">{m.information_title()}</h3>
 					<p class="text-gray-300 mb-4"><b>{m.ntak_registration()} </b> {m.ntak_number()}</p>
-					<a
-						href={createUrl('/adatvedelmi')}
-						class="text-gray-300 hover:text-orange-400 transition duration-150"
-						>{m.privacy_policy()}</a
-					>
+					<p class="pb-2">
+						<a
+							href={createUrl('/adatvedelmi')}
+							class="text-gray-300 hover:text-orange-400 transition duration-150"
+							>{m.privacy_policy()}</a
+						>
+					</p>
+					<p>
+						<a
+							href={base +
+								(getLocale() === 'en'
+									? '/assets/Kaboca_Vendeghaz_Hazirend_EN.pdf'
+									: getLocale() === 'fr'
+										? '/assets/Kaboca_Vendeghaz_Hazirend_HU.pdf'
+										: '/assets/Kaboca_Vendeghaz_Hazirend_HU.pdf')}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="text-gray-300 hover:text-orange-400 transition duration-150"
+						>
+							{m.house_rules()}
+						</a>
+					</p>
 					<p class="text-gray-400 mt-4">&copy; {new Date().getFullYear()} {m.app_title()}</p>
 				</div>
 			</div>

@@ -9,7 +9,7 @@
 
 	<div class="grid grid-cols-1 md:grid-cols-5 gap-8">
 		<div class="md:col-span-2">
-			<h3 class="text-lg font-bold text-gray-700 mb-4">Cím: {m.address()}</h3>
+			<h3 class="text-lg font-bold text-gray-700 mb-4">{m.address_title()} {m.address()}</h3>
 			<h3 class="text-lg font-bold text-gray-700 mb-4">
 				{m.contact_description()}
 			</h3>
