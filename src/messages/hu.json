@@ -58,6 +58,7 @@
 	"booking_award": "Booking Award",
 	"house_title": "A ház",
 	"house_description": "A ház Vác belvárosától 10 perc sétányira található, a város kertvárosi, csöndesebb részében, száz méterre a Dunaparttól és a kerékpárúttól. Kisebb baráti társaságok vagy gyermekes (akár 3-4-5 gyermekes) családok fogadására alkalmas. Az alsó szinten egy nagy amerikai konyhás nappali és egy veranda várja a vendégeket. Itt helyezkedik el a szülői háló. A második szinten egy hálószoba található, illetve egy nagy nyitott tér gyermekjátékokkal. Mindkét szinten van fürdőszoba, lent külön WC-vel. ",
+	"house_conference": "A ház kisebbfajta konferenciák, lelkigyakorlatok megrendezésére is alkalmas, napközben maximum 15 főig. Árajánlat a tulajdonostól kérhető.",
 	"house_image_alt": "A ház",
 	"wine_cellar_title": "Borospince",
 	"wine_cellar_description": "A borospince a tulajdonos engedélyével, bizonyos feltételekkel használható.",
@@ -69,6 +70,14 @@
 	"equipment_list_5": "Benti parkolási lehetőség egy autónak és egy parkolóhely a ház előtt",
 	"equipment_list_6": "Gyermekbarát szolgáltatások: Utazóágy, etetőszék, gyermekjátékok",
 	"wine_cellar_image_alt": "A borospince",
+
+	"terms": "feltételek",
+	"terms_description_1": "A bejelentkezés 15, a kijelentkezés pedig délelőtt 10 óráig van.",
+	"terms_description_2": "A teljes ház és a kert a vendégek rendelkezésére áll. A pince használata külön megbeszélés tárgyát képezi.",
+	"terms_description_3": "Gyermekeket örömmel várunk, állatokat azonban nem tudunk elfogadni.",
+	"terms_description_4": "A ház nemdohányzó ház.",
+	"terms_description_5": "Szomszédainkra való tekintettel este fél tíz után kérjük a zajos tevékenységek mellőzését.",
+
 	"testimonials_title": "Vélemények",
 	"previous_testimonial": "Előző vélemény",
 	"next_testimonial": "Következő vélemény",

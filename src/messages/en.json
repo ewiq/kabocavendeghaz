@@ -58,6 +58,7 @@
 	"booking_award": "Booking Award",
 	"house_title": "The House",
 	"house_description": "The house is a 10-minute walk from the center of Vác, in a quiet suburban area, 100 meters from the Danube and the cycling path. It is suitable for small groups of friends or families with children (even 3–4–5 children). On the ground floor, guests can enjoy a large open-plan kitchen and living room, as well as a veranda. The master bedroom is also located here. The second floor has a bedroom and a large open play area. There is a bathroom on both floors, with a separate toilet downstairs.",
+	"house_conference": "The house is also suitable for hosting small conferences or spiritual retreats, accommodating up to 15 people during the day. A price quote can be requested from the owner.",
 	"house_image_alt": "The House",
 	"wine_cellar_title": "Wine Cellar",
 	"wine_cellar_description": "The wine cellar can be used with the owner's permission under certain conditions.",
@@ -69,6 +70,14 @@
 	"equipment_list_5": "Indoor parking for one car",
 	"equipment_list_6": "Child-friendly amenities: travel cot, high chair, children's toys",
 	"wine_cellar_image_alt": "The Wine Cellar",
+
+	"terms": "terms",
+	"terms_description_1": "Check-in is from 3 PM and check-out is until 10 AM.",
+	"terms_description_2": "The entire house and the garden are at the guests’ disposal. Use of the cellar must be discussed separately.",
+	"terms_description_3": "Children are welcome, but we cannot accept pets.",
+	"terms_description_4": "The house is non-smoking.",
+	"terms_description_5": "Out of consideration for our neighbors, please avoid loud activities after 9:30 PM.",
+
 	"testimonials_title": "Reviews",
 	"previous_testimonial": "Previous review",
 	"next_testimonial": "Next review",

@@ -15,6 +15,10 @@
 			<p class="text-gray-700 mb-4">
 				{m.house_description()}
 			</p>
+
+			<p class="text-gray-700 font-semibold italic mb-4">
+				{m.house_conference()}
+			</p>
 			<div class="grid grid-cols-2 gap-2">
 				<img
 					src={base + '/photos/01.jpg'}
@@ -38,7 +42,7 @@
 				</p>
 			</div>
 
-			<div>
+			<div class="mb-8">
 				<h3 class="text-xl font-semibold text-gray-900 mb-2">{m.equipment_title()}</h3>
 				<p class="text-gray-700 mb-2">{m.equipment_list()}</p>
 				<p class="text-gray-700 mb-2">{m.equipment_list_2()}</p>
@@ -46,6 +50,25 @@
 				<p class="text-gray-700 mb-2">{m.equipment_list_4()}</p>
 				<p class="text-gray-700 mb-2">{m.equipment_list_5()}</p>
 				<p class="text-gray-700">{m.equipment_list_6()}</p>
+			</div>
+
+			<div>
+				<h3 class="uppercase text-xl font-semibold text-gray-900 mb-2">{m.terms()}</h3>
+				<p class="text-gray-700 mb-2">
+					{m.terms_description_1()}
+				</p>
+				<p class="text-gray-700 mb-2">
+					{m.terms_description_2()}
+				</p>
+				<p class="text-gray-700 mb-2">
+					{m.terms_description_3()}
+				</p>
+				<p class="text-gray-700 mb-2">
+					{m.terms_description_4()}
+				</p>
+				<p class="text-gray-700 mb-2">
+					{m.terms_description_5()}
+				</p>
 			</div>
 		</div>
 	</div>

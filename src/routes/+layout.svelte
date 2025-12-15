@@ -250,11 +250,9 @@
 					<p>
 						<a
 							href={base +
-								(getLocale() === 'en'
+								(getLocale() === 'en' || getLocale() === 'fr'
 									? '/assets/Kaboca_Vendeghaz_Hazirend_EN.pdf'
-									: getLocale() === 'fr'
-										? '/assets/Kaboca_Vendeghaz_Hazirend_HU.pdf'
-										: '/assets/Kaboca_Vendeghaz_Hazirend_HU.pdf')}
+									: '/assets/Kaboca_Vendeghaz_Hazirend_HU.pdf')}
 							target="_blank"
 							rel="noopener noreferrer"
 							class="text-gray-300 hover:text-orange-400 transition duration-150"
